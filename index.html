@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Word Guess Game</title>
+    <!-- CSS Style Sheet Links -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets//css/style.css">
+</head>
+<body>
+    <!-- <div class="container" style="border: 1px solid black; margin-top: 10px;"> -->
+    <!-- <div class="container-fluid" style="border: 1px solid black;"> -->
+    <div class="container-fluid">
+
+        <div class="jumbotron">
+            <h1 class="display-4">Word Guess Game!</h1>
+            <p class="lead">Attempt to guess a randomly selected word!</p>
+            <hr class="my-4">
+            
+            <button type="button" class="btn btn-primary btn-lg" id="game-play-btn" onclick="DisplayCardDeck(true)">Click to play!</button>
+            <button type="button" class="btn btn-danger btn-lg" id="game-cancel-btn" disabled = "disabled" onclick="DisplayCardDeck(false)">Cancel</button>
+            
+        </div>
+    
+        <!-- <div class="card" style="width: 18rem; margin: 10px;">
+            <div class="card-body">
+                <h1 class="card-title">Scoreboard</h1>
+                <hr style="border: 1px solid black;">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col col-sm-8">
+                            <h5>Wins:
+                                <span class="badge badge-success">5</span>
+                            </h5>
+                        </div>
+                        <div class="col col-sm-4">
+                            <h6>
+                                <span class="badge badge-success">5</span>
+                            </h6>
+                            <p>x</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col col-sm-8">
+                            <h5>Loses:
+                                <span class="badge badge-danger">2</span>
+                            </h5>
+                        </div>
+                        <div class="col col-sm-4">
+                            <h5><span class="badge badge-danger">3</span></h5>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div> -->
+        
+
+        <!-- Game Board -->
+        <div class="card-deck" id="gameBoard">
+            <div class="card text-white bg-dark mb-3">
+                <div class="card-header">
+                    <h1>Scoreboard</h1>
+                </div>
+                <div class="card-body">
+                    <!-- <h1 class="card-title">Scoreboard</h1> -->
+                    <!-- <hr style="border: 1px solid white;"> -->
+                    <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                    
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center" style="color: black;">
+                            Wins
+                            <span class="badge badge-success" id="winCount">0</span>
+                            <!-- <span class="badge badge-primary badge-pill">14</span> -->
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center" style="color: black;">
+                            Losses
+                            <span class="badge badge-danger" id="lossCount">0</span>
+                            <!-- <span class="badge badge-primary badge-pill">2</span> -->
+                        </li>
+                    </ul>
+                </div>    
+            </div>
+            
+            <div class="card text-white bg-dark mb-3">
+                <div class="card-header">
+                    <h1>Hangman</h1>
+                </div>
+
+                <div class="card-body">
+                    
+                </div>
+            </div>
+            
+            <div class="card text-white bg-dark mb-3">
+                <div class="card-header">
+                    <h1>Guess Tracker</h1>
+                    <h6 class="card-subtitle mb-2 text-muted">Remaining Guesses: 9</h6>
+                </div>
+
+                <div class="card-body">
+                    <p class="card-text">Letters already guess</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Custom Javascrip -->
+    <script src="assets/javascript/game.js"></script>
+</body>
+</html>
