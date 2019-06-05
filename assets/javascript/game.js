@@ -3,9 +3,19 @@ var gameCancelBtn   = document.getElementById("game-cancel-btn");
 var xWinCounter     = document.getElementById("winCount");
 var xLossCounter    = document.getElementById("lossCount");
 var gameWordText    = document.getElementById("gameWord");
+var letterGuessText = document.getElementById("wrongLetters");
+var remainingGuessesText = document.getElementById("total-guesses");
 
 var iWins           = 0;
 var iLosses         = 0;
+var iTotalGuesses   = 10;
+var iRemainingGuesses = iTotalGuesses;
+
+var playMode        = false;
+var gameWord;
+var guessWrongLetters = [];
+var favTVshows = [];
+var tvShow;
 
 var words = {
     "game1Words": {
@@ -93,9 +103,47 @@ var words = {
 
 
 
-// Capture Keyboard event...
+// Capture Keyboard event when playMode is on...
 document.onkeyup = function (e) {
-    console.log(e.key);
+    if (playMode) {
+        // console.log(e.key);
+        guessLetter(e.key);
+    }
+}
+
+// guessLetter will compare a user's guess to the gameWord.
+// 1. If users' guess matches an 'unguessed' letter from the game word, then replace the token '-' with the letter
+// 2. If users' guess doesn't match then push their guess into the guessWrongLetters array, and decrement the remaining guess...
+// 3. If users' guess matches a value already within guessWrongLetter array, display an alert and do nothing else...
+function guessLetter (letter) {
+    console.log(letter);
+
+    // var S = "fullweb";
+    // S.includes("web");
+    fillWrongLettersArray(letter);
+
+}
+
+// Create Function to push a letter into an array and update UI....
+function fillWrongLettersArray (letter) {
+    // append letter to guessWrongLetters array...
+    guessWrongLetters.unshift(letter);
+    // Update the UI...
+    console.log(guessWrongLetters);
+    // Print array to screen...
+    letterGuessText.textContent = guessWrongLetters.toString();
+}
+
+// Create function to decrement the remaining guesses integer
+function decrementRemainingGuess () {
+    iRemainingGuesses--;
+    remainingGuessesText.textContent = ("Remaining Guesses: " + iRemainingGuesses);
+
+    //If RemainingGuesses = 0 then user has lost the game...
+    // 1. Alert user of their misfortune
+    // 2. Create/Call a Reset gameBoard Function 
+    //  a) pick new gameWord b) reset the Guess Tracker card...
+    // 3. Call updateScore passing false...
 }
 
 // Display Card Deck
@@ -106,15 +154,20 @@ function DisplayCardDeck (arg) {
         gameCancelBtn.disabled = false;
         document.getElementById("game-play-btn").disabled = true;
         
-        // Automatically pick game word, and display placeholder values, with length = to game word...
-        wordPicker(1);  // ToDo: find a way to give the user a choice of which game version they play...
+        remainingGuessesText.textContent = ("Remaining Guesses: " + iTotalGuesses);
         
+        // Set playMode flag...
+        playMode = true;
+        
+        // Automatically pick game word, and display placeholder values, with length = to game word...
+        gameWord = wordPicker(1);  // ToDo: find a way to give the user a choice of which game version they play...
     } else {
         gameBoard.style.display = "none";
         gameCancelBtn.disabled = true;
         document.getElementById("game-play-btn").disabled = false;
         // when user cancels the game, reset the scoreboard...
         resetScore();
+        playMode = false;
     }
 
     // initialize the Scoreboard...
@@ -145,6 +198,10 @@ function resetScore () {
     iLosses = 0;
 }
 
+// resetGameBoard - 
+
+// resetGame - Wrapper function to Reset all variables...
+
 // wordPicker - randomly selects a word. xGameVersion will determine what type of word we should get...
 function wordPicker (xGameVersion) {
     // To Do: work on this. as games grow, so does this block. Should be a cleaner way to do this. Maybe a function?
@@ -169,9 +226,3 @@ function wordPicker (xGameVersion) {
     console.log(xGameKeyVal);
     return xGameKeyVal;
 }
-
-function computerPicker() {
-    var computerOptions = ['r', 'p', 's'];
-    var computerChoice = computerOptions[Math.floor(Math.random() * 3)];
-    return computerChoice;
-  }

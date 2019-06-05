@@ -21,10 +21,6 @@
             
             <button type="button" class="btn btn-primary btn-lg" id="game-play-btn" onclick="DisplayCardDeck(true)">Click to play!</button>
             <button type="button" class="btn btn-danger btn-lg" id="game-cancel-btn" disabled = "disabled" onclick="DisplayCardDeck(false)">Cancel</button>
-
-            <button type="button" class="btn btn-success btn-lg" onclick="updateScore(true)">Win</button>
-            <button type="button" class="btn btn-danger btn-lg" onclick="updateScore(false)">Loss</button>
-            
         </div>
     
         <!-- <div class="card" style="width: 18rem; margin: 10px;">
@@ -104,11 +100,12 @@
             <div class="card text-white bg-dark mb-3">
                 <div class="card-header">
                     <h1>Guess Tracker</h1>
-                    <h6 class="card-subtitle mb-2 text-muted">Remaining Guesses: 9</h6>
+                    <h6 class="card-subtitle mb-2 text-muted" id="total-guesses"></h6>
                 </div>
 
                 <div class="card-body">
-                    <p class="card-text">Letters already guessed</p>
+                    <p class="card-text">Letters already guessed:</p>
+                    <p id="wrongLetters"></p>
                 </div>
             </div>
         </div>
