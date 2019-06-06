@@ -1,3 +1,10 @@
 .card-deck {
     display: none;
 }
+
+#gameWord {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
