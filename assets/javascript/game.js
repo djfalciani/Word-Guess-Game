@@ -116,11 +116,18 @@ document.onkeyup = function (e) {
 // 2. If users' guess doesn't match then push their guess into the guessWrongLetters array, and decrement the remaining guess...
 // 3. If users' guess matches a value already within guessWrongLetter array, display an alert and do nothing else...
 function guessLetter (letter) {
-    console.log(letter);
-
-    // var S = "fullweb";
-    // S.includes("web");
-    fillWrongLettersArray(letter);
+    
+    // Check if the letter is in the gameWord array...
+    if (gameWord.includes(letter.toUpperCase()) == true) {
+        // Correct Guess...
+        // console.log("Grats, you guess correctly. " && letter && " is in the game word: " && xGameWord);
+        console.log(letter);
+        // ToDo - Hook up the grand reveal...
+    } else {
+        fillWrongLettersArray(letter);
+        decrementRemainingGuess();
+    }
+    
 
 }
 
@@ -129,7 +136,7 @@ function fillWrongLettersArray (letter) {
     // append letter to guessWrongLetters array...
     guessWrongLetters.unshift(letter);
     // Update the UI...
-    console.log(guessWrongLetters);
+    // console.log(guessWrongLetters);
     // Print array to screen...
     letterGuessText.textContent = guessWrongLetters.toString();
 }
@@ -138,6 +145,12 @@ function fillWrongLettersArray (letter) {
 function decrementRemainingGuess () {
     iRemainingGuesses--;
     remainingGuessesText.textContent = ("Remaining Guesses: " + iRemainingGuesses);
+
+    if (iRemainingGuesses == 0) {
+        alert("You have lost!");
+        // ToDo: Hook up the Reset Board call... 
+
+    }
 
     //If RemainingGuesses = 0 then user has lost the game...
     // 1. Alert user of their misfortune
